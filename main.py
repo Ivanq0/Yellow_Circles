@@ -1,14 +1,13 @@
 import sys
 from random import randint
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
+from ui_UI import Ui_MainWindow
 
-
-class Circles(QMainWindow):
+class Circles(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.add_circle.clicked.connect(self.yellow_add)
 
@@ -24,7 +23,7 @@ class Circles(QMainWindow):
         self.repaint()
 
     def draw_flag(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(1, 255), randint(1, 255), randint(1, 255)))
         size = randint(1, 400)
         qp.drawEllipse(randint(1, 400), randint(1, 300), size, size)
 
